@@ -28,17 +28,19 @@
     <header class="w-10/12 mx-auto py-5 border-b-2 border-gray-200">
     <h1 class="font-bold text-2xl">Job Application Tracker</h1>
     <div class="grid grid-cols-3 gap-[16px] pt-5 mb-[30px]">
-        <div class="total bg-white shadow-sm p-[20px]">
+        <div class=" bg-white shadow-sm p-[20px]">
+            
             <p>Total</p>
-            <h3 class="font-bold text-2xl text-neutral">8</h3>
+            <h3 class="font-bold text-2xl text-neutral">
+                <span class="total">0</span></h3>
         </div>
-        <div class="Interview  bg-white shadow-sm p-[16px]">
+        <div class="Interview  bg-white shadow-sm p-[16px]" >
             <p>Interview</p>
-            <h3 class="font-bold text-2xl text-green-600">0</h3>
+            <h3 class="font-bold text-2xl text-green-600" id="Interview" >0</h3>
         </div>
-        <div class="Rejected  bg-white shadow-sm p-[16px]">
+        <div class="Rejected  bg-white shadow-sm p-[16px]" >
             <p>Rejected</p>
-            <h3 class="font-bold text-2xl text-red-600">0</h3>
+            <h3 class="font-bold text-2xl text-red-600" id="Rejected">0</h3>
         </div>
     </div>
 
@@ -51,26 +53,31 @@
             <h2 class="text-[16px] font-bold text-neutral">Available Jobs</h2>
         </div>
         <div>
-            <p class="text-neutral/50 text-[14px]">8 Jobs</p>
+           <span class="total">0</span>
+           <p class="text-neutral/50 text-[14px]">Jobs</p>
         </div>
         </div>
 
         <div class="py-5 ">
-            <button id="all-btn" class="btn px-2 bg-info w-[80px] text-white">All</button>
-            <button id="interview-btn" class="btn px-4 bg-white shadow-md w-[80px] text-neutral">Interview</button>
-            <button id="rejected-btn" class="btn px-2 bg-white shadow-md w-[80px] text-neutral">Rejected</button>
+            <button onclick="toggle('all-btn')" id="all-btn" class="btn px-2 bg-info w-[80px] shadow-md text-neutral">All</button>
+            <button onclick="toggle('interview-btn')" id="interview-btn" class=" btn bg-base-200 text-neutral  px-4  shadow-md w-[80px]">Interview</button>
+            <button onclick="toggle('rejected-btn')" id="rejected-btn" class=" btn bg-base-200 text-neutral  px-2  shadow-md w-[80px]">Rejected</button>
         </div>
 
-        <section id="all-cards " class="py-5">
+        <section id="filtered-section">
+
+        </section>
+
+        <section id="all-cards" class="py-5">
             <!-- card-1 -->
             <div class="flex justify-between  bg-white shadow-10 p-[24px] mb-[16px]">
-                <div class="left-side space-y-[20px]">
+                <div class=" space-y-[20px]">
                 <div>
-                <p class="text-[16px] text-neutral font-bold">Mobile First Corp</p>
-                <p class="text-[12px] text-neutral/50">React Native Developer</p>
+                <p class="company-name text-[16px] text-neutral font-bold">Mobile First Corp</p>
+                <p  class=" post text-[12px] text-neutral/50">React Native Developer</p>
             </div>
             <div>
-                <p class="text-[12px] text-neutral/50">Remote • Full-time • $130,000 - $175,000</p>
+                <p class="condition text-[12px] text-neutral/50">Remote • Full-time • $130,000 - $175,000</p>
             </div>
             <div>
                 <button class="status btn w-[110px] px-2">Not Applied</button>
@@ -86,10 +93,11 @@
             
 
             <div class="right-side">
-                <buuton class="dlt-btn btn bg-slate-50 border-2 border-neutral-300 p-2 rounded-full"><i class="fa-regular fa-trash-can"></i></buuton>
+                <button class="dlt-btn btn bg-slate-50 border-2 border-neutral-300 p-2 rounded-full"><i class="fa-regular fa-trash-can"></i></buuton>
             </div>
             
             </div>
+
             <!-- card-2 -->
             <div class="flex justify-between  bg-white shadow-10 mb-[16px] p-[24px]">
                 <div class="left-side space-y-[20px]">
@@ -118,6 +126,8 @@
             </div>
             
             </div>
+
+            <!-- card-3 -->
             <div class="flex justify-between p-[24px] bg-white shadow-10 mb-[16px]">
                 <div class="left-side space-y-[20px]">
                 <div>
@@ -145,6 +155,8 @@
             </div>
             
             </div>
+
+            <!-- card-8 -->
             <div class="flex justify-between p-[24px] bg-white shadow-10 mb-[16px]">
                 <div class="left-side space-y-[20px]">
                 <div>
@@ -172,6 +184,8 @@
             </div>
             
             </div>
+
+            <!-- card-4 -->
             <div class="flex justify-between p-[24px] bg-white shadow-10 mb-[16px]">
                 <div class="left-side space-y-[20px]">
                 <div>
@@ -199,6 +213,7 @@
             </div>
             
             </div>
+            <!-- card-5 -->
             <div class="flex justify-between p-[24px] bg-white shadow-10 mb-[16px]">
                 <div class="left-side space-y-[20px]">
                 <div>
@@ -226,6 +241,7 @@
             </div>
             
             </div>
+            <!-- card-6 -->
             <div class="flex justify-between p-[24px] bg-white shadow-10 mb-[16px]">
                 <div class="left-side space-y-[20px]">
                 <div>
@@ -253,6 +269,7 @@
             </div>
             
             </div>
+            <!-- card--7 -->
             <div class="flex justify-between p-[24px] bg-white shadow-10 mb-[16px]">
                 <div class="left-side space-y-[20px]">
                 <div>
@@ -284,5 +301,9 @@
         </section>
         
     </main>
+
+
+
+    <script src="script.js/toggle.js"></script>
 </body>
 </html>
