@@ -24,7 +24,9 @@
     }
 </style>
 </head>
-<body class="bg-neutral-100">
+<body class="bg-neutral-200">
+
+    <!-- dashboard section -->
     <header class="w-10/12 mx-auto py-5 border-b-2 border-gray-200">
     <h1 class="font-bold text-2xl">Job Application Tracker</h1>
     <div class="grid grid-cols-3 gap-[16px] pt-5 mb-[30px]">
@@ -58,16 +60,21 @@
         </div>
         </div>
 
+
+        <!-- Tab part -->
         <div class="py-5 ">
             <button onclick="toggle('all-btn')" id="all-btn" class="btn px-2 bg-info w-[80px] shadow-md text-neutral">All</button>
             <button onclick="toggle('interview-btn')" id="interview-btn" class=" btn bg-base-200 text-neutral  px-4  shadow-md w-[80px]">Interview</button>
             <button onclick="toggle('rejected-btn')" id="rejected-btn" class=" btn bg-base-200 text-neutral  px-2  shadow-md w-[80px]">Rejected</button>
         </div>
 
+        <!-- filtered section to create array -->
         <section id="filtered-section" class="hidden">
            
 
         </section>
+
+        <!-- 8 cards section -->
 
         <section id="all-cards" class="py-5">
             <!-- card-1 -->
@@ -218,17 +225,17 @@
             <div class="job-card flex justify-between  bg-white shadow-10 p-[24px] mb-[16px]">
                 <div class=" space-y-[20px]">
                 <div>
-                <p class="company-name text-[16px] text-neutral font-bold">Mobile First Corp</p>
-                <p  class=" post text-[12px] text-neutral/50">React Native Developer</p>
+                <p class="company-name text-[16px] text-neutral font-bold">MegaCorp Solutions</p>
+                <p  class=" post text-[12px] text-neutral/50">JavaScript Developer</p>
             </div>
             <div>
-                <p class="condition text-[12px] text-neutral/50">Remote • Full-time • $130,000 - $175,000</p>
+                <p class="condition text-[12px] text-neutral/50">New York, NY • Full-time • $130,000 - $170,00</p>
             </div>
             <div>
                 <button class="status btn w-[110px] px-2">Not Applied</button>
             </div>
             <div class="note">
-                <p class="text-[12px] text-neutral/50">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+                <p class="text-[12px] text-neutral/50">Build enterprise applications with JavaScript and modern frameworks. We offer competitive compensation, health insurance, and professional development opportunities.</p>
             </div>
             <div class="flex gap-[10px]">
                 <button class="interview-btn btn btn-outline btn-success">Interview</button>
@@ -246,17 +253,17 @@
             <div class="job-card flex justify-between  bg-white shadow-10 p-[24px] mb-[16px]">
                 <div class=" space-y-[20px]">
                 <div>
-                <p class="company-name text-[16px] text-neutral font-bold">Mobile First Corp</p>
-                <p  class=" post text-[12px] text-neutral/50">React Native Developer</p>
+                <p class="company-name text-[16px] text-neutral font-bold">StartupXYZ</p>
+                <p  class=" post text-[12px] text-neutral/50">Full Stack Engineer</p>
             </div>
             <div>
-                <p class="condition text-[12px] text-neutral/50">Remote • Full-time • $130,000 - $175,000</p>
+                <p class="condition text-[12px] text-neutral/50">Remote • Full-time • $120,000 - $160,000</p>
             </div>
             <div>
                 <button class="status btn w-[110px] px-2">Not Applied</button>
             </div>
             <div class="note">
-                <p class="text-[12px] text-neutral/50">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+                <p class="text-[12px] text-neutral/50">Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included.</p>
             </div>
             <div class="flex gap-[10px]">
                 <button class="interview-btn btn btn-outline btn-success">Interview</button>
@@ -274,17 +281,17 @@
             <div class="job-card flex justify-between  bg-white shadow-10 p-[24px] mb-[16px]">
                 <div class=" space-y-[20px]">
                 <div>
-                <p class="company-name text-[16px] text-neutral font-bold">Mobile First Corp</p>
-                <p  class=" post text-[12px] text-neutral/50">React Native Developer</p>
+                <p class="company-name text-[16px] text-neutral font-bold">TechCorp Industries</p>
+                <p  class=" post text-[12px] text-neutral/50">Senior Frontend Developer</p>
             </div>
             <div>
-                <p class="condition text-[12px] text-neutral/50">Remote • Full-time • $130,000 - $175,000</p>
+                <p class="condition text-[12px] text-neutral/50">San Francisco, CA • Full-time • $130,000 - $175,000</p>
             </div>
             <div>
                 <button class="status btn w-[110px] px-2">Not Applied</button>
             </div>
             <div class="note">
-                <p class="text-[12px] text-neutral/50">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+                <p class="text-[12px] text-neutral/50">We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects.</p>
             </div>
             <div class="flex gap-[10px]">
                 <button class="interview-btn btn btn-outline btn-success">Interview</button>
@@ -302,13 +309,8 @@
         </section>
         
     </main>
-    <!-- <footer>
-         <div class="flex flex-col justify-center items-center text-center">
-                <img src="jobs.png" alt="">
-                <p class="text-2xl font-bold text-neutral">No Jobs Available</p>
-                <p class="text-[12px] text-neutral/50">Check back soon for new job opportunities</p>
-            </div>
-    </footer> -->
+   
+    
 
 
 

@@ -59,6 +59,7 @@ function toggle(id){
     //ekhon jekhane click kora ase
     const selected=document.getElementById(id)
     currentStatus = id;
+
     // Adding blue bg for selected button
     selected.classList.remove('bg-base-300')
     selected.classList.add('bg-info','text-neutral')
@@ -68,11 +69,11 @@ function toggle(id){
     if(id=='interview-btn'){
         filteredSection.classList.remove('hidden')
         allCardSection.classList.add('hidden')
-        //interview array te kono card dhukle ta show korano render func call kore
+    //interview array te kono card dhukle ta show korano render func call kore
     if(interview.length)
-
+        
         renderInterview()
-
+        
       //na thakle no jobs available show 
     else
         defaultMode()
@@ -103,52 +104,66 @@ function toggle(id){
 
 
 
+    // main er vitore button gulate click korle ki hbe....(event delegation)
+    const mainContainer=document.querySelector('main')
+    .addEventListener('click',function(event){
 
-    const mainContainer=document.querySelector('main').addEventListener('click',function(event){
         //when interview button clicked
         if(event.target.classList.contains('interview-btn')){
             // const parentNode=event.target.parentNode.parentNode
-            const parentNode =event.target.closest('.job-card')
+            const parentNode =event.target.closest('.job-card'); //kon card a click kora hoise oita ber kore
            
-        const companyName=parentNode.querySelector('.company-name').innerText
-        const post=parentNode.querySelector('.post').innerText
-        const condition=parentNode.querySelector('.condition').innerText
-        // const status=parentNode.querySelector('.status').innerText
-        const note=parentNode.querySelector('.note').innerText
-        const status=parentNode.querySelector('.status')
-        status.innerText='Interview'
-        status.className='status btn w-[110px] px-2 btn-outline btn-success'
-        // console.log(parentNode,companyName,post,condition,status,note)
-        const info = {
-            companyName,
-            post,
-            condition,
-            status:'Interview',
-            note
-        }
-        // console.log(info)
-       const existense= interview.find(item=> item.post==info.post)
+            // j card selected hobe oi card er data collection shuru(parent-job-card)
+            const companyName=parentNode.querySelector('.company-name').innerText
+            const post=parentNode.querySelector('.post').innerText
+            const condition=parentNode.querySelector('.condition').innerText
+            // const status=parentNode.querySelector('.status').innerText
+            const note=parentNode.querySelector('.note').innerText
+
+            // status k update kore dei interview te
+            const status=parentNode.querySelector('.status')
+            status.innerText='Interview'
+            status.className='btn w-[110px] px-2 btn-outline btn-success'
+            // console.log(parentNode,companyName,post,condition,status,note)
+
+            // data niya object
+            const info = {
+                companyName,
+                post,
+                condition,
+                status:'Interview',
+                note
+            }
+            // console.log(info)
+
+            // array te khuja hcche object er data ache kina...nh thakle push,,thakle nibe nah
+        const existense= interview.find(item=> item.post==info.post)
       
 
-       if(!existense){
-        interview.push(info)
-       }
-       rejected=rejected.filter(item=> item.post!=info.post)
-       if(interview.length==0 && rejected.length==0){
+        if(!existense){
+            interview.push(info)
+        }
 
-           defaultMode()
-       }
 
-       if(currentStatus=='interview-btn'){
-        // defaultMode()
-            renderInterview()
+        // current tab int te thakle arrayr data gula show korbe
 
-       }
+        if(currentStatus=='interview-btn'){
+                renderInterview()
+
+        //rejected array theke jeta bad jabe oitao interview array te dhukbe
+        rejected=rejected.filter(item=> item.post!=info.post)
+
+        // jodi array=0
+        if(interview.length==0 && rejected.length==0){
+
+            defaultMode()
+        }
+
+        }
     //    console.log(interview)
-       calculateCount()
-       updateRightSideProgress()
-    defaultMode()
-}
+        calculateCount()
+        defaultMode()
+    }
 
         //when rejected button is clicked
        else if(event.target.classList.contains('rejected-btn')){
@@ -162,7 +177,7 @@ function toggle(id){
         const note=parentNode.querySelector('.note').innerText
         const status=parentNode.querySelector('.status')
         status.innerText='Rejected'
-        status.className='status btn w-[110px] px-2 btn-outline btn-error'
+        status.className='btn w-[110px] px-2 btn-outline btn-error'
         // console.log(parentNode,companyName,post,condition,status,note)
         const info = {
             companyName,
@@ -178,18 +193,18 @@ function toggle(id){
        if(!existense){
         rejected.push(info)
        }
-       interview=interview.filter(item=> item.companyName!=info.companyName)
-       if(interview.length==0 && rejected.length==0){
-
-           defaultMode()
-       }
        if(currentStatus=='rejected-btn'){
 
             renderRejected()
        }
+       interview=interview.filter(item=> item.companyName!=info.companyName)
+    //    if(interview.length==0 && rejected.length==0){
+
+    //        defaultMode()
+    //    }
+       
     //    console.log(interview)
     calculateCount()
-       updateRightSideProgress()
    
     defaultMode()
 }
@@ -197,25 +212,25 @@ function toggle(id){
         else if(event.target.closest('.dlt-btn')){
     const parentNode = event.target.closest('.job-card')
 
-    // identify card
-    const post = parentNode.querySelector('.post').innerText
+    // identify card(jekono ekta diya kaj kora jay)jate kon job remove hocche identify kora jay
+    const postElement = parentNode.querySelector('.post').innerText
 
-   
+    interview = interview.filter(item => item.post !== postElement)
+    rejected = rejected.filter(item => item.post !== postElement)
+   //selected job k remove
     parentNode.remove()
 
-    interview = interview.filter(item => item.post !== post)
 
-    rejected = rejected.filter(item => item.post !== post)
 
-    calculateCount()
-
+    //interview/rejected button a thaka obosthay card delete korle default mode on
     if(currentStatus === 'interview-btn' && interview.length === 0){
         defaultMode()
     }
-
+    
     if(currentStatus === 'rejected-btn' && rejected.length === 0){
         defaultMode()
     }
+    calculateCount()
 }
 })
 
@@ -225,7 +240,8 @@ function toggle(id){
     function renderInterview(){
         filteredSection.innerHTML = ''
         for(let item of interview){
-            console.log(item)
+            // console.log(item)
+            //array te data rakahr jnno card create hobe oitar div banano
             let newElement = document.createElement('div')
             newElement.className = 'job-card flex justify-between  bg-white shadow-10 p-[24px] mb-[16px]'
             newElement.innerHTML = ` <div class=" space-y-[20px]">
