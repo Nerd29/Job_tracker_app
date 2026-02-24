@@ -9,6 +9,8 @@ const allBtn=document.getElementById('all-btn')
 const interviewBtn=document.getElementById('interview-btn')
 const rejectedBtn=document.getElementById('rejected-btn')
 
+let jobsCount=document.getElementById('jobs-count')
+
 // int/rej tab 2 er moddhe interview and rejected card dekhanor jonno empty section made
 const filteredSection = document.getElementById('filtered-section')
 
@@ -24,7 +26,7 @@ const filteredSection = document.getElementById('filtered-section')
     let currentStatus='all'
 
 
-// part-2
+// dashboard er job update
 function calculateCount(){
     let totalJobs = allCardSection.children.length;//joto card ase shobgular total
 
@@ -35,9 +37,28 @@ function calculateCount(){
     // int/rej tab er array length
     Interview.innerText = interview.length
     Rejected.innerText = rejected.length
+
+    
     
 }
 calculateCount()
+
+
+//Right side er job update
+function updateJob(){
+    let totalJobs = allCardSection.children.length;
+    if(currentStatus=='interview-btn'){
+            jobsCount.innerText=`${interview.length} out of ${totalJobs}`
+        }
+        else if(currentStatus=='rejected-btn'){
+            jobsCount.innerText=`${rejected.length} out of ${totalJobs}`
+        }
+        else{
+            jobsCount.innerText=`${totalJobs} Jobs`
+        }
+}
+updateJob()
+
 
 
 // part-3:Toggling
@@ -98,7 +119,7 @@ function toggle(id){
     filteredSection.classList.add('hidden')
     }
      
-    
+    updateJob()//call nah korle show korbe nah update tab a.
    
 }
 
@@ -144,24 +165,26 @@ function toggle(id){
             interview.push(info)
         }
 
-
         // current tab int te thakle arrayr data gula show korbe
-
-        if(currentStatus=='interview-btn'){
-                renderInterview()
-
-        //rejected array theke jeta bad jabe oitao interview array te dhukbe
-        rejected=rejected.filter(item=> item.post!=info.post)
-
-        // jodi array=0
         if(interview.length==0 && rejected.length==0){
 
             defaultMode()
         }
+       
+        //rejected array theke jeta bad jabe oitao interview array te dhukbe
+        rejected=rejected.filter(item=> item.post!=info.post)
+
+        calculateCount()
+        updateJob()
+
+        // jodi array=0
+        
+         if(currentStatus=='interview-btn'){
+                renderInterview()
+
 
         }
-    //    console.log(interview)
-        calculateCount()
+       
         defaultMode()
     }
 
@@ -197,16 +220,15 @@ function toggle(id){
 
             renderRejected()
        }
+      
        interview=interview.filter(item=> item.companyName!=info.companyName)
     //    if(interview.length==0 && rejected.length==0){
 
     //        defaultMode()
     //    }
-       
-    //    console.log(interview)
-    calculateCount()
-   
-    defaultMode()
+        calculateCount()
+        updateJob()
+        defaultMode()
 }
 
         else if(event.target.closest('.dlt-btn')){
@@ -231,6 +253,7 @@ function toggle(id){
         defaultMode()
     }
     calculateCount()
+    updateJob()
 }
 })
 
