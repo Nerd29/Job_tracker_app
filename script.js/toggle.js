@@ -59,8 +59,6 @@ function updateJob(){
 }
 updateJob()
 
-
-
 // part-3:Toggling
 
 //tab change kora
@@ -100,7 +98,6 @@ function toggle(id){
         defaultMode()
     }
     
-    
    //rejected tab clicked(same kaj hoy int tab er moto)
      else if(id=='rejected-btn'){
         allCardSection.classList.add('hidden')
@@ -122,8 +119,6 @@ function toggle(id){
     updateJob()//call nah korle show korbe nah update tab a.
    
 }
-
-
 
     // main er vitore button gulate click korle ki hbe....(event delegation)
     const mainContainer=document.querySelector('main')
@@ -181,8 +176,6 @@ function toggle(id){
         
          if(currentStatus=='interview-btn'){
                 renderInterview()
-
-
         }
        
         defaultMode()
@@ -232,29 +225,27 @@ function toggle(id){
 }
 
         else if(event.target.closest('.dlt-btn')){
-    const parentNode = event.target.closest('.job-card')
+        const parentNode = event.target.closest('.job-card')
 
-    // identify card(jekono ekta diya kaj kora jay)jate kon job remove hocche identify kora jay
-    const postElement = parentNode.querySelector('.post').innerText
+        // identify card(jekono ekta diya kaj kora jay)jate kon job remove hocche identify kora jay
+        const postElement = parentNode.querySelector('.post').innerText
 
-    interview = interview.filter(item => item.post !== postElement)
-    rejected = rejected.filter(item => item.post !== postElement)
-   //selected job k remove
-    parentNode.remove()
+        interview = interview.filter(item => item.post !== postElement)
+        rejected = rejected.filter(item => item.post !== postElement)
+        //selected job k remove
+        parentNode.remove()
 
-
-
-    //interview/rejected button a thaka obosthay card delete korle default mode on
-    if(currentStatus === 'interview-btn' && interview.length === 0){
-        defaultMode()
+        //interview/rejected button a thaka obosthay card delete korle default mode on
+        if(currentStatus === 'interview-btn' && interview.length === 0){
+            defaultMode()
+        }
+        
+        if(currentStatus === 'rejected-btn' && rejected.length === 0){
+            defaultMode()
+        }
+        calculateCount()
+        updateJob()
     }
-    
-    if(currentStatus === 'rejected-btn' && rejected.length === 0){
-        defaultMode()
-    }
-    calculateCount()
-    updateJob()
-}
 })
 
 
